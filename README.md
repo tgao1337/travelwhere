@@ -8,12 +8,8 @@ The website targets people who are bored and unsure of there to go outside of th
 The user will load the page and select their budget, way of transport, and something they are interested in (or select nothing to have a random search);.
 
 # Technical
-Google Maps API
-Here API?
-Yelp?
-Eventbrite?
-Foursquare?
-Instagram pictures?
+EventBrite API
+Google Maps API //hopefully not so much of this
 
 ## Models
 <li>Input</li> //budget, transport, interest, initial location
