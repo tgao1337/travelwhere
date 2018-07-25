@@ -172,6 +172,11 @@ inputBoxlo.addEventListener("keydown", function(e) {
 
 var x = document.getElementById("demo");
 
+if (typeof nlocalStorage === "undefined" || nlocalStorage === null) {
+  var LocalStorage = require('node-localstorage').LocalStorage;
+  nlocalStorage = new LocalStorage('./scratch');
+}
+
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
@@ -181,10 +186,10 @@ function getLocation() {
 }
 // console.log("test");
 function showPosition(position) {
-  localStorage.setItem('testlat', position.coords.latitude);
-  localStorage.setItem('testlon', position.coords.longitude);
+  nlocalStorage.setItem('testlate', position.coords.latitude);
+  nlocalStorage.setItem('testlone', position.coords.longitude);
   // // console.log(localStorage.testlat);
-  document.getElementById("tttt").innerHTML = '<p>'+localStorage.testlat+'</p>';
+  document.getElementById("tttt").innerHTML = '<p>'+nlocalStorage.testlate+'</p>';
   // document.getElementById("tttt").innerHTML = '<p>'+localStorage.testlon+'</p>';
 
 
