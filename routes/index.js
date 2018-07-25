@@ -1,16 +1,25 @@
 var express = require('express');
 var router = express.Router();
 const request = require('request');
+// const localStorage = require('localStorage');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  const url = "https://www.eventbriteapi.com/v3/events/search/?token=3I5EFIZIDVYYTR4SZ5GD&location.latitude=37.7735294&location.longitude=-122.4177857";
+  res.render('index', { title: 'GoWhere' });
+});
+
+router.get('/result', function(req, res, next) {
+  const laa = localStorage.getItem(testlat);
+  const loo = localStorage.getItem(testlon);
+  const url = `https://www.eventbriteapi.com/v3/events/search/?token=3I5EFIZIDVYYTR4SZ5GD&location.latitude=${laa}&location.longitude=${loo}`;
   request.get(url, (err, response, body) => {
     if(err) { console.log(err); }
     body = JSON.parse(body);
-    console.log(body);
+    let evens = body.events[0].name.text;
+    // console.log(body);
+    // console.log("ashuhudashuasdhudashuasdhhuasasasassi");
+    res.render('result', {evens})
   });
-  res.render('index', { title: 'testtitle' });
 });
 
 module.exports = router;

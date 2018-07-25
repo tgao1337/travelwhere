@@ -8,66 +8,194 @@
 <div class="frow">
   <div>
 
-    <form action="/home" method="post" class="frow">
+    <div class="frow">
       <div>
 
-        <div class="mdl-textfield mdl-js-textfield opfm">
+        <div class="mdl-textfield mdl-js-textfield opfm tts">
+          <div id="latt">
 
-          <input class="mdl-textfield__input" name="llat" type="text" id="lllat" placeholder="Latitude">
+            <input class="mdl-textfield__input boinput" name="llat" type="text" id="lllat" pattern="-?[0-9]*(\.[0-9]+)?" maxlength="20" placeholder="ex: 37.773550"/>
+          </div>
+          <span class="mdl-textfield__error">Input is not a proper coordinate!</span>
           <div class="mdl-tooltip mdl-tooltip--large" for="lllat">Latitude</div>
 
         </div>
       </div>
       <div>
 
-        <div class="mdl-textfield mdl-js-textfield opfm">
-          <input class="mdl-textfield__input" name="llong" type="text" id="lllong" placeholder="Longitude">
+        <div class="mdl-textfield mdl-js-textfield opfm tts">
+          <div id="lonn">
+
+            <input class="mdl-textfield__input boinput" name="llong" type="text" id="lllong" pattern="-?[0-9]*(\.[0-9]+)?" maxlength="20" placeholder="ex: -122.417730"/>
+          </div>
+          <span class="mdl-textfield__error">Input is not a proper coordinate!</span>
           <div class="mdl-tooltip mdl-tooltip--large" for="lllong">Longitude</div>
         </div>
       </div>
       <!-- <input type="text" name="llat" id="lllat" placeholder="Latitude">
       <input type="text" name="llong" id="lllong" placeholder="Longitude"> -->
-    </form>
+    </div>
   </div>
   <div class="rcr">
 
     <div>
 
-      <button id="gbutt" class="opfm sb mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="getLocation()">
-        <div id="gps">
-          <i class="material-icons">gps_not_fixed</i>
-        </div>
+      <div id="gps">
+      <button id="gbutt" class="opfm mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-js-ripple-effect" onclick="getLocation()">
+          <i onclick="getLocation()" class="material-icons">gps_not_fixed</i>
       </button>
+    </div>
       <div class="mdl-tooltip mdl-tooltip--large" for="gbutt">Click here to automatically input your location</div>
     </div>
     <!-- <button onclick="getLocation()"><i class="material-icons">gps_not_fixed</i></button> -->
     <div>
       <div class="opfm">
+        <a type="button" href="/result" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Find</a>
 
-        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Find</button>
+        <!-- <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Find</button> -->
       </div>
     </div>
   </div>
 </div>
+<div id="tttt">test</div>
 <!--
 <p id="demo"></p>
 <div class="fo"></div> -->
 
 <script>
+
+var inputBox = document.getElementById("lllat");
+var inputBoxlo = document.getElementById("lllong");
+
+var invalidChars = [
+  "+",
+  "e",
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F",
+  "G",
+  "H",
+  "I",
+  "J",
+  "K",
+  "L",
+  "M",
+  "N",
+  "O",
+  "P",
+  "Q",
+  "R",
+  "S",
+  "T",
+  "U",
+  "V",
+  "W",
+  "X",
+  "Y",
+  "Z",
+  "a",
+  "b",
+  "c",
+  "d",
+  "f",
+  "g",
+  "h",
+  "i",
+  "j",
+  "k",
+  "l",
+  "m",
+  "n",
+  "o",
+  "p",
+  "q",
+  "r",
+  "s",
+  "t",
+  "u",
+  "v",
+  "w",
+  "x",
+  "y",
+  "z",
+  "~",
+  "`",
+  "!",
+  "@",
+  "#",
+  "$",
+  "%",
+  "^",
+  "&",
+  "*",
+  "(",
+  ")",
+  "_",
+  "-",
+  "+",
+  "=",
+  "{",
+  "}",
+  "[",
+  "]",
+  "\\",
+  "|",
+  "'",
+  "\"",
+  ";",
+  ":",
+  "<",
+  ">",
+  ",",
+  "?",
+  "/"
+];
+
+// inputBox.addEventListener("input", function() {
+//   this.value = this.value.replace("e", "");
+// });
+
+inputBox.addEventListener("keydown", function(e) {
+  if (invalidChars.includes(e.key)) {
+    e.preventDefault();
+  }
+});
+
+inputBoxlo.addEventListener("keydown", function(e) {
+  if (invalidChars.includes(e.key)) {
+    e.preventDefault();
+  }
+});
+
 var x = document.getElementById("demo");
 
 function getLocation() {
   if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition);
+    navigator.geolocation.getCurrentPosition(showPosition);
   } else {
-      x.innerHTML = "Geolocation is not supported by this browser.";
+    x.innerHTML = "Geolocation is not supported by this browser.";
   }
 }
+// console.log("test");
 function showPosition(position) {
+  localStorage.setItem('testlat', position.coords.latitude);
+  localStorage.setItem('testlon', position.coords.longitude);
+  // // console.log(localStorage.testlat);
+  document.getElementById("tttt").innerHTML = '<p>'+localStorage.testlat+'</p>';
+  // document.getElementById("tttt").innerHTML = '<p>'+localStorage.testlon+'</p>';
+
+
   // x.innerHTML = "Latitude: " + position.coords.latitude +
   // "<br>Longitude: " + position.coords.longitude;
-  document.getElementById("lllat").setAttribute("value", position.coords.latitude);
-  document.getElementById("lllong").setAttribute("value", position.coords.longitude);
-  document.getElementById("gps").innerHTML = '<i class="material-icons">gps_fixed</i>';
+  document.getElementById("latt").innerHTML = '<input class="boinput mdl-textfield__input" name="llat" type="text" id="lllat" pattern="-?[0-9]*(\.[0-9]+)?" maxlength="20" placeholder="ex: 37.773550" value="'+position.coords.latitude+'">';
+  document.getElementById("lonn").innerHTML = '<input class="boinput mdl-textfield__input" name="llong" type="text" id="lllong" pattern="-?[0-9]*(\.[0-9]+)?" maxlength="20" placeholder="ex: -122.417730" value="'+position.coords.longitude+'">';
+  // document.getElementById("lllat").setAttribute("value", position.coords.latitude);
+  // document.getElementById("lllong").setAttribute("value", position.coords.longitude);
+  document.getElementById("gps").innerHTML = '<button id="gbutt" class="opfm mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-js-ripple-effect" onclick="getLocation()"><i onclick="getLocation()" class="material-icons">gps_fixed</i></button>';
+
+
 }
 </script>
