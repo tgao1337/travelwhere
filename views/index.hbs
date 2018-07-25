@@ -1,26 +1,73 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
 
 
-<p>Click the button to get your coordinates.</p>
+<h1 class="center">{{title}}</h1>
 
-<button onclick="getLocation()">Try It</button>
 
+
+<!-- <p class="center">Click the button to get your coordinates.</p> -->
+<div class="frow">
+  <div>
+
+    <form action="/home" method="post" class="frow">
+      <div>
+
+        <div class="mdl-textfield mdl-js-textfield opfm">
+
+          <input class="mdl-textfield__input" name="llat" type="text" id="lllat" placeholder="Latitude">
+          <div class="mdl-tooltip mdl-tooltip--large" for="lllat">Latitude</div>
+
+        </div>
+      </div>
+      <div>
+
+        <div class="mdl-textfield mdl-js-textfield opfm">
+          <input class="mdl-textfield__input" name="llong" type="text" id="lllong" placeholder="Longitude">
+          <div class="mdl-tooltip mdl-tooltip--large" for="lllong">Longitude</div>
+        </div>
+      </div>
+      <!-- <input type="text" name="llat" id="lllat" placeholder="Latitude">
+      <input type="text" name="llong" id="lllong" placeholder="Longitude"> -->
+    </form>
+  </div>
+  <div class="rcr">
+
+    <div>
+
+      <button id="gbutt" class="opfm sb mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="getLocation()">
+        <div id="gps">
+          <i class="material-icons">gps_not_fixed</i>
+        </div>
+      </button>
+      <div class="mdl-tooltip mdl-tooltip--large" for="gbutt">Click here to automatically input your location</div>
+    </div>
+    <!-- <button onclick="getLocation()"><i class="material-icons">gps_not_fixed</i></button> -->
+    <div>
+      <div class="opfm">
+
+        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Find</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--
 <p id="demo"></p>
+<div class="fo"></div> -->
 
 <script>
 var x = document.getElementById("demo");
 
 function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
+  if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+      x.innerHTML = "Geolocation is not supported by this browser.";
+  }
 }
-
 function showPosition(position) {
-    x.innerHTML = "Latitude: " + position.coords.latitude +
-    "<br>Longitude: " + position.coords.longitude;
+  // x.innerHTML = "Latitude: " + position.coords.latitude +
+  // "<br>Longitude: " + position.coords.longitude;
+  document.getElementById("lllat").setAttribute("value", position.coords.latitude);
+  document.getElementById("lllong").setAttribute("value", position.coords.longitude);
+  document.getElementById("gps").innerHTML = '<i class="material-icons">gps_fixed</i>';
 }
 </script>

@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
     body = JSON.parse(body);
     console.log(body);
   });
-  res.render('index', { title: 'TravelWhere' });
+  res.render('index', { title: 'testtitle' });
 });
 
 module.exports = router;
