@@ -16,18 +16,21 @@ router.get('/', function(req, res, next) {
 router.get('/result', function(req, res, next) {
   // const laa = localStorage.getItem("testlat");
   // const loo = localStorage.getItem("testlon");
-  const laa = localStorage.getItem("37.7735294");
-  const loo = localStorage.getItem("-122.4177857");
+  // const laa = Number(localStorage.getItem("37.7735294"));
+
+  // const laa = Number(localStorage.getItem('testlate'));
+  // const loo = localStorage.getItem("-122.4177857");
+  // console.log(laa);
   const url = `https://www.eventbriteapi.com/v3/events/search/?token=3I5EFIZIDVYYTR4SZ5GD&location.latitude=37.7735294&location.longitude=-122.4177857`;
 
   // const url = `https://www.eventbriteapi.com/v3/events/search/?token=3I5EFIZIDVYYTR4SZ5GD&location.latitude=${laa}&location.longitude=${loo}`;
   request.get(url, (err, response, body) => {
     if(err) { console.log(err); }
     body = JSON.parse(body);
-    let evens = body.events[2].description;
-    // console.log(body);
-    // console.log("ashuhudashuasdhudashuasdhhuasasasassi");
-    res.render('result', {evens: evens});
+    let x = Math.floor(Math.random() * 50);
+    let evens = body.events[x].name;
+    console.log(evens["text"]);
+    res.render('result', {evens: evens.text});
   });
 });
 
