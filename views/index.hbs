@@ -50,7 +50,7 @@
     <!-- <button onclick="getLocation()"><i class="material-icons">gps_not_fixed</i></button> -->
     <div>
       <div class="opfm">
-        <a type="button" href="/result" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Find</a>
+        <a type="button" onclick="difpage()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Find</a>
 
         <!-- <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Find</button> -->
       </div>
@@ -200,4 +200,10 @@ function showPosition(position) {
 
 
 }
+
+function difpage() {
+  res.render('result');
+}
+
+
 </script>
