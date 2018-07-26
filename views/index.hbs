@@ -50,14 +50,14 @@
     <!-- <button onclick="getLocation()"><i class="material-icons">gps_not_fixed</i></button> -->
     <div>
       <div class="opfm">
-        <a type="button" onclick="difpage()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Find</a>
+        <input type="button" onclick="getapis()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" value="Find" /input>
 
-        <!-- <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Find</button> -->
       </div>
     </div>
   </div>
 </div>
 <div id="tttt">test</div>
+<div id="eventname">event name show up here</div>
 <!--
 <p id="demo"></p>
 <div class="fo"></div> -->
@@ -172,7 +172,8 @@ inputBoxlo.addEventListener("keydown", function(e) {
 
 var x = document.getElementById("demo");
 
-
+localStorage.setItem('testlate', "40.768757");
+localStorage.setItem('testlone', "-73.971652");
 
 function getLocation() {
   if (navigator.geolocation) {
@@ -186,6 +187,7 @@ function showPosition(position) {
   localStorage.setItem('testlate', position.coords.latitude);
   localStorage.setItem('testlone', position.coords.longitude);
   // // console.log(localStorage.testlat);
+  // getapis();
   document.getElementById("tttt").innerHTML = '<p>'+localStorage.testlate+'</p>';
   // document.getElementById("tttt").innerHTML = '<p>'+localStorage.testlon+'</p>';
 
@@ -198,11 +200,31 @@ function showPosition(position) {
   // document.getElementById("lllong").setAttribute("value", position.coords.longitude);
   document.getElementById("gps").innerHTML = '<button id="gbutt" class="opfm mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-js-ripple-effect" onclick="getLocation()"><i onclick="getLocation()" class="material-icons">gps_fixed</i></button>';
 
-
 }
 
-function difpage() {
-  res.render('result');
+function getapis() {
+  console.log("GETAPI CALL");
+  let laa = localStorage.getItem("testlate");
+  let loo = localStorage.testlone;
+  console.log(laa);
+  console.log(loo);
+  let x = Math.floor(Math.random() * 50);
+  console.log(x);
+  let url = `https://www.eventbriteapi.com/v3/events/search/?token=3I5EFIZIDVYYTR4SZ5GD&location.latitude=${laa}&location.longitude=${loo}`;
+  console.log(url);
+  fetch(url).then((res) => {
+    return res.json();
+    // console.log("retuened json");
+  }).then((text) => {
+    let nametext = text.events[x]["name"].text;
+    // console.log(nametext);
+    document.getElementById("eventname").innerHTML = nametext;
+  }).catch((err) => {
+    console.log(err);
+  });
+
+
+
 }
 
 
