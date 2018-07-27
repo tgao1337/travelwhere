@@ -3,7 +3,7 @@
 </div>
 <div id="ti">
 
-  <h1 class="center">{{title}}</h1>
+  <h1 class="center"><a href="/" class="blt">{{title}}</a></h1>
 </div>
 
 
@@ -61,7 +61,18 @@
   </div>
 </div>
 <!-- <div id="tttt">test</div> -->
-<h1 id="eventname" class="center"></h1>
+<div id="eventname" class="center"></div>
+<div class="ro center">
+  <div>
+    <div id="emg" class="center"></div>
+
+  </div>
+  <div>
+    <div id="enformation" class="center ep"></div>
+
+  </div>
+
+</div>
 <!--
 <p id="demo"></p>
 <div class="fo"></div> -->
@@ -138,7 +149,6 @@ var invalidChars = [
   "(",
   ")",
   "_",
-  "-",
   "+",
   "=",
   "{",
@@ -176,8 +186,11 @@ inputBoxlo.addEventListener("keydown", function(e) {
 
 var x = document.getElementById("demo");
 
-localStorage.setItem('testlate', "40.768757");
-localStorage.setItem('testlone', "-73.971652");
+// localStorage.setItem('testlate', "40.768757");
+// localStorage.setItem('testlone', "-73.971652");
+
+localStorage.setItem('testlate', "37.773550");
+localStorage.setItem('testlone', "-122.417730");
 
 function getLocation() {
   if (navigator.geolocation) {
@@ -221,14 +234,17 @@ function getapis() {
     // console.log("retuened json");
   }).then((text) => {
     let nametext = text.events[x]["name"].text;
+    let distext = text.events[x]["description"].text;
+    let erl = text.events[x]["url"];
+    let picurl = text.events[x]["logo"].url;
     // console.log(nametext);
-    document.getElementById("eventname").innerHTML = nametext;
-    document.getElementById("ti").innerHTML = '<h3 class="center">{{title}}</h3>';
+    document.getElementById("eventname").innerHTML = '<h1 class="blt center"><a href="'+erl+'" class="blt" target="_blank">'+nametext+'</a></h1>';
+    document.getElementById("ti").innerHTML = '<h3 class="center"><a href="/" class="lblt">{{title}}</a></h3>';
     document.getElementById("cssshifttitle").innerHTML = '<style>@media only screen and (min-width: 769px) {.frow { display: flex; flex-direction: row;justify-content: center; align-items: center; } .tts { margin-right: 1em; } .flec { padding-top: 5vh; } .rcr { display: flex; flex-direction: row; justify-content: center;  align-items: center;margin-left: .75em; } }</style>'
     // document.getElementById("tootip").innerHTML = ;
     document.getElementById("finda").innerHTML = '<input type="button" onclick="getapis()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" value="Find Another" /input>'
-
-
+    document.getElementById("enformation").innerHTML = '<p class="ep">'+distext+'</p>';
+    document.getElementById("emg").innerHTML = '<img class="center lefm" src="'+picurl+'" alt="'+nametext+'">';
   }).catch((err) => {
     console.log(err);
   });
