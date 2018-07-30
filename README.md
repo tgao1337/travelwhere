@@ -52,3 +52,8 @@ Other maps?
 <li>Complete usable build</li>
 <li>Diagnose potential bugs</li>
 <li>Polish</li>
+
+## Future changes
+IBM Watson to integrate personalized recommendations
+  -analyze user twitter
+  -analyse event description
