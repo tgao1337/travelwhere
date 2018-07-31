@@ -1,2 +1,257 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div id="cssshifttitle">
+
+</div>
+<div id="ti">
+
+  <h1 class="center"><a href="/" class="blt">{{title}}</a></h1>
+</div>
+
+
+
+<!-- <p class="center">Click the button to get your coordinates.</p> -->
+<div class="frow">
+  <div>
+
+    <div class="frow">
+      <div>
+
+        <div class="mdl-textfield mdl-js-textfield opfm tts">
+          <div id="latt">
+
+            <input class="mdl-textfield__input boinput" name="llat" type="text" id="lllat" pattern="-?[0-9]*(\.[0-9]+)?" maxlength="20" placeholder="ex: 37.773550"/>
+          </div>
+          <span class="mdl-textfield__error">Input is not a proper coordinate!</span>
+          <div class="mdl-tooltip mdl-tooltip--large" for="lllat">Latitude</div>
+
+        </div>
+      </div>
+      <div>
+
+        <div class="mdl-textfield mdl-js-textfield opfm tts">
+          <div id="lonn">
+
+            <input class="mdl-textfield__input boinput" name="llong" type="text" id="lllong" pattern="-?[0-9]*(\.[0-9]+)?" maxlength="20" placeholder="ex: -122.417730"/>
+          </div>
+          <span class="mdl-textfield__error">Input is not a proper coordinate!</span>
+          <div class="mdl-tooltip mdl-tooltip--large" for="lllong">Longitude</div>
+        </div>
+      </div>
+      <!-- <input type="text" name="llat" id="lllat" placeholder="Latitude">
+      <input type="text" name="llong" id="lllong" placeholder="Longitude"> -->
+    </div>
+  </div>
+  <div class="rcr">
+
+    <div>
+
+      <div id="gps">
+      <button id="gbutt" class="opfm mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-js-ripple-effect" onclick="getLocation()">
+          <i onclick="getLocation()" class="material-icons">gps_not_fixed</i>
+          <div class="mdl-tooltip" id="tootip" for="gbutt">Click here to automatically input your location</div>
+      </button>
+    </div>
+    </div>
+    <!-- <button onclick="getLocation()"><i class="material-icons">gps_not_fixed</i></button> -->
+    <div>
+      <div id="finda" class="opfm">
+        <input type="button" onclick="getapis()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" value="Find" /input>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div id="tttt">test</div> -->
+<div id="eventname" class="center"></div>
+<div class="ro center">
+  <div>
+    <div id="emg" class="center"></div>
+
+  </div>
+  <div>
+    <div id="enformation" class="center ep"></div>
+
+  </div>
+
+</div>
+<!--
+<p id="demo"></p>
+<div class="fo"></div> -->
+
+<script>
+
+var inputBox = document.getElementById("lllat");
+var inputBoxlo = document.getElementById("lllong");
+
+var invalidChars = [
+  "+",
+  "e",
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F",
+  "G",
+  "H",
+  "I",
+  "J",
+  "K",
+  "L",
+  "M",
+  "N",
+  "O",
+  "P",
+  "Q",
+  "R",
+  "S",
+  "T",
+  "U",
+  "V",
+  "W",
+  "X",
+  "Y",
+  "Z",
+  "a",
+  "b",
+  "c",
+  "d",
+  "f",
+  "g",
+  "h",
+  "i",
+  "j",
+  "k",
+  "l",
+  "m",
+  "n",
+  "o",
+  "p",
+  "q",
+  "r",
+  "s",
+  "t",
+  "u",
+  "v",
+  "w",
+  "x",
+  "y",
+  "z",
+  "~",
+  "`",
+  "!",
+  "@",
+  "#",
+  "$",
+  "%",
+  "^",
+  "&",
+  "*",
+  "(",
+  ")",
+  "_",
+  "+",
+  "=",
+  "{",
+  "}",
+  "[",
+  "]",
+  "\\",
+  "|",
+  "'",
+  "\"",
+  ";",
+  ":",
+  "<",
+  ">",
+  ",",
+  "?",
+  "/"
+];
+
+// inputBox.addEventListener("input", function() {
+//   this.value = this.value.replace("e", "");
+// });
+
+inputBox.addEventListener("keydown", function(e) {
+  if (invalidChars.includes(e.key)) {
+    e.preventDefault();
+  }
+});
+
+inputBoxlo.addEventListener("keydown", function(e) {
+  if (invalidChars.includes(e.key)) {
+    e.preventDefault();
+  }
+});
+
+var x = document.getElementById("demo");
+
+// localStorage.setItem('testlate', "40.768757");
+// localStorage.setItem('testlone', "-73.971652");
+
+localStorage.setItem('testlate', "37.773550");
+localStorage.setItem('testlone', "-122.417730");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+// console.log("test");
+function showPosition(position) {
+  localStorage.setItem('testlate', position.coords.latitude);
+  localStorage.setItem('testlone', position.coords.longitude);
+  // // console.log(localStorage.testlat);
+  // getapis();
+  // document.getElementById("tttt").innerHTML = '<p>'+localStorage.testlate+'</p>';
+  // document.getElementById("tttt").innerHTML = '<p>'+localStorage.testlon+'</p>';
+
+
+  // x.innerHTML = "Latitude: " + position.coords.latitude +
+  // "<br>Longitude: " + position.coords.longitude;
+  document.getElementById("latt").innerHTML = '<input class="boinput mdl-textfield__input" name="llat" type="text" id="lllat" pattern="-?[0-9]*(\.[0-9]+)?" maxlength="20" placeholder="ex: 37.773550" value="'+position.coords.latitude+'">';
+  document.getElementById("lonn").innerHTML = '<input class="boinput mdl-textfield__input" name="llong" type="text" id="lllong" pattern="-?[0-9]*(\.[0-9]+)?" maxlength="20" placeholder="ex: -122.417730" value="'+position.coords.longitude+'">';
+  // document.getElementById("lllat").setAttribute("value", position.coords.latitude);
+  // document.getElementById("lllong").setAttribute("value", position.coords.longitude);
+  document.getElementById("gps").innerHTML = '<button id="gbutt" class="opfm mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-js-ripple-effect" onclick="getLocation()"><i onclick="getLocation()" class="material-icons">gps_fixed</i></button>';
+
+}
+
+function getapis() {
+  console.log("GETAPI CALL");
+  let laa = localStorage.getItem("testlate");
+  let loo = localStorage.testlone;
+  console.log(laa);
+  console.log(loo);
+  let x = Math.floor(Math.random() * 50);
+  console.log(x);
+  let url = `https://www.eventbriteapi.com/v3/events/search/?token=3I5EFIZIDVYYTR4SZ5GD&location.latitude=${laa}&location.longitude=${loo}`;
+  console.log(url);
+  fetch(url).then((res) => {
+    return res.json();
+    // console.log("retuened json");
+  }).then((text) => {
+    let nametext = text.events[x]["name"].text;
+    let distext = text.events[x]["description"].text;
+    let erl = text.events[x]["url"];
+    let picurl = text.events[x]["logo"].url;
+    // console.log(nametext);
+    document.getElementById("eventname").innerHTML = '<h1 class="blt center"><a href="'+erl+'" class="blt" target="_blank">'+nametext+'</a></h1>';
+    document.getElementById("ti").innerHTML = '<h3 class="center"><a href="/" class="lblt">{{title}}</a></h3>';
+    document.getElementById("cssshifttitle").innerHTML = '<style>@media only screen and (min-width: 769px) {.frow { display: flex; flex-direction: row;justify-content: center; align-items: center; } .tts { margin-right: 1em; } .flec { padding-top: 5vh; } .rcr { display: flex; flex-direction: row; justify-content: center;  align-items: center;margin-left: .75em; } }</style>'
+    // document.getElementById("tootip").innerHTML = ;
+    document.getElementById("finda").innerHTML = '<input type="button" onclick="getapis()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" value="Find Another" /input>'
+    document.getElementById("enformation").innerHTML = '<p class="ep">'+distext+'</p>';
+    document.getElementById("emg").innerHTML = '<img class="center lefm" src="'+picurl+'" alt="'+nametext+'">';
+  }).catch((err) => {
+    console.log(err);
+  });
+
+
+
+}
+
+
+</script>

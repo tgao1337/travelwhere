@@ -1,8 +1,121 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@keyframes bgcolor {
+  0% {
+    background-color: #f48fb1
+  }
+
+  30% {
+    background-color: #ba68c8
+  }
+
+  60% {
+    background-color: #81d4fa
+  }
+
+  90% {
+    background-color: #1de9b6
+  }
+
+  100% {
+    background-color: #b0bec5
+  }
 }
 
-a {
-  color: #00B7FF;
+body {
+  -webkit-animation: bgcolor 30s infinite;
+  animation: bgcolor 15s infinite;
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
+}
+.center {
+  text-align: center;
+}
+
+.frow {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flec {
+  padding-top: 20vh;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-content: center; */
+}
+.rcr {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (min-width: 769px) {
+  .frow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .tts {
+    margin-right: 1em;
+  }
+  .flec {
+    padding-top: 28vh;
+  }
+  .rcr {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-left: .75em;
+  }
+
+}
+
+.opfm {
+  padding: .75em;
+}
+
+.sb {
+padding: -5px;
+}
+
+.fbb {
+  padding: 1em;
+}
+
+.boinput {
+  background-color: white;
+  border-radius: .75em;
+  border: 2px solid indigo;
+  padding: .75em;
+
+}
+
+.blt {
+  color: #191919;
+}
+
+.lblt {
+  color: #383838;
+}
+
+.ep {
+  /* text-align: center; */
+  text-align: left;
+  width: 90%;
+}
+
+.ro {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.lefm {
+  margin-left: 10vw;
+  margin-right: 1vw;
 }
