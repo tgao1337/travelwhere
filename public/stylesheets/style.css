@@ -116,6 +116,17 @@ padding: -5px;
 }
 
 .lefm {
-  margin-left: 10vw;
-  margin-right: 1vw;
+  /* margin-left: 10vw; */
+  margin-right: 2vw;
+}
+
+#floater {
+  width: 80vw;
+  /* background-color: green; */
+
+}
+
+#floatpic {
+  float: left;
+
 }

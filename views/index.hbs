@@ -243,8 +243,8 @@ function getapis() {
     document.getElementById("cssshifttitle").innerHTML = '<style>@media only screen and (min-width: 769px) {.frow { display: flex; flex-direction: row;justify-content: center; align-items: center; } .tts { margin-right: 1em; } .flec { padding-top: 5vh; } .rcr { display: flex; flex-direction: row; justify-content: center;  align-items: center;margin-left: .75em; } }</style>'
     // document.getElementById("tootip").innerHTML = ;
     document.getElementById("finda").innerHTML = '<input type="button" onclick="getapis()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" value="Find Another" /input>'
-    document.getElementById("enformation").innerHTML = '<p class="ep">'+distext+'</p>';
-    document.getElementById("emg").innerHTML = '<img class="center lefm" src="'+picurl+'" alt="'+nametext+'">';
+    document.getElementById("enformation").innerHTML = '<div id="floater"><img class="center lefm" id="floatpic" src="'+picurl+'" alt="'+nametext+'"><p class="ep">'+distext+'</p></div>';
+    // document.getElementById("emg").innerHTML = '<img class="center lefm" src="'+picurl+'" alt="'+nametext+'">';
   }).catch((err) => {
     console.log(err);
   });
