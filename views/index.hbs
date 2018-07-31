@@ -70,9 +70,18 @@
   <div>
     <div id="enformation" class="center ep"></div>
 
+    <div id="starttimed"></div>
+    <div id="endtimed"></div>
+    <div id="isfreed"></div>
   </div>
 
 </div>
+
+
+
+
+
+
 <!--
 <p id="demo"></p>
 <div class="fo"></div> -->
@@ -237,6 +246,14 @@ function getapis() {
     let distext = text.events[x]["description"].text;
     let erl = text.events[x]["url"];
     let picurl = text.events[x]["logo"].url;
+    let starttime = text.events[x]["start"].local;
+    let endtime = text.events[x]["end"].local;
+    let isfree = text.events[x]["is_free"];
+    console.log(starttime);
+    console.log(endtime);
+    console.log(isfree);
+    // let ___ = text.events[x][""];
+
     // console.log(nametext);
     document.getElementById("eventname").innerHTML = '<h1 class="blt center"><a href="'+erl+'" class="blt" target="_blank">'+nametext+'</a></h1>';
     document.getElementById("ti").innerHTML = '<h3 class="center"><a href="/" class="lblt">{{title}}</a></h3>';
@@ -245,6 +262,9 @@ function getapis() {
     document.getElementById("finda").innerHTML = '<input type="button" onclick="getapis()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" value="Find Another" /input>'
     document.getElementById("enformation").innerHTML = '<div id="floater"><img class="center lefm" id="floatpic" src="'+picurl+'" alt="'+nametext+'"><p class="ep">'+distext+'</p></div>';
     // document.getElementById("emg").innerHTML = '<img class="center lefm" src="'+picurl+'" alt="'+nametext+'">';
+    document.getElementById("starttimed").innerHTML = '<p>Start Time: '+ starttime+'</p>';
+    document.getElementById("endtimed").innerHTML = '<p>End Time: '+ endtime+'</p>';
+    document.getElementById("isfreed").innerHTML = '<p>Is free? '+ isfree+'</p>';
   }).catch((err) => {
     console.log(err);
   });
