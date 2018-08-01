@@ -64,7 +64,6 @@
 <div id="eventname" class="center"></div>
 <div class="ro center">
   <div>
-    <div id="loading"></div>
   </div>
   <div>
     <div id="emg" class="center"></div>
@@ -79,6 +78,7 @@
   </div>
 
 </div>
+<div id="loading"></div>
 
 
 
@@ -231,8 +231,13 @@ function showPosition(position) {
 
 }
 
+
+function loading() {
+  document.getElementById('loading').innerHTML = '<div id="p2" class="center mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>';
+}
+
 function getapis() {
-  // document.getElementById('loading').innerHTML = '<div id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>';
+  loading();
   console.log("GETAPI CALL");
   let laa = localStorage.getItem("testlate");
   let loo = localStorage.testlone;
@@ -270,6 +275,7 @@ function getapis() {
     document.getElementById("endtimed").innerHTML = '<p>End Time: '+ endtime+'</p>';
     document.getElementById("isfreed").innerHTML = '<p>Is free? '+ isfree+'</p>';
     var xload = document.getElementById("loading");
+    xload.innerHTML = '<div></div>';
    // if (xload.style.display === "none") {
    //     xload.style.display = "block";
    // } else {
