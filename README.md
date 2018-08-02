@@ -21,8 +21,9 @@ Google Maps API //hopefully not so much of this
 <li>error.hbs: Error page</li>
 
 ## Routes
-[What routes will we need? What will they do?]
-TBD
+Index - get
+?Index - post (convert front end results to another page possibly)
+?Results - get
 
 ## Other
 
