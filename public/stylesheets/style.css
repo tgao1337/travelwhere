@@ -122,7 +122,9 @@ padding: -5px;
 
 #floater {
   width: 90vw;
-  /* background-color: green; */
+  background-color: white;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
 
 }
 
