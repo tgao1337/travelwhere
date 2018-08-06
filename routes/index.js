@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const request = require('request');
+var rp = require('request-promise');
 
   // var LocalStorage = require('node-localstorage').LocalStorage;
   // localStorage = new LocalStorage('./scratch');
@@ -13,26 +14,47 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'GoWhere' });
 });
 
-router.get('/result', function(req, res, next) {
-  let laa = "37.7735294";
-  let loo = "-122.4177857";
-  // const laa = Number(localStorage.getItem("37.7735294"));
-  // const loo = localStorage.getItem("-122.4177857");
-  // console.log(laa);
-  // const url = `https://www.eventbriteapi.com/v3/events/search/?token=3I5EFIZIDVYYTR4SZ5GD&location.latitude=37.7735294&location.longitude=-122.4177857`;
-  const url = `https://www.eventbriteapi.com/v3/events/search/?token=3I5EFIZIDVYYTR4SZ5GD&location.latitude=${laa}&location.longitude=${loo}`;
+router.post('/', function(req, res, next) {
+  // console.log(req.body);
+  let url = 'https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyCm7431yy5TSXfJZqPpGrO4GURTLObIMj8';
+  let latc = req.body.loc;
+  var options = { method: 'POST',
+    url: 'http://maps.googleapis.com/maps/api/geocode/',
+    body:
+    {
+      address: latc
+    },
+    headers: {
+        "key":"AIzaSyCm7431yy5TSXfJZqPpGrO4GURTLObIMj8"
+    },
+    json: true };
 
-  request.get(url, (err, response, body) => {
+  rp(options).then(function(body) {
+    // console.log(body);
+    var latte = body.results[0].geometry.location.lat;
+    // if (matchString == "match") match = true;
 
-    if(err) { console.log(err); }
-    body = JSON.parse(body);
-    let x = Math.floor(Math.random() * body.events.length);
-    let evens = body.events[x];
-    // console.log(evens["text"]);
-    // let eventtest = String(evens);
-    // console.log(evens.name);
-    res.render('result', {event:evens});
+    console.log(latte);
+    // console.log(match);
+  }).catch(function(err) {
+    console.error(err);
   });
+  // let x = Math.floor(Math.random() * 50);
+  // console.log(x);
+  // let url = `https://www.eventbriteapi.com/v3/events/search/?token=3I5EFIZIDVYYTR4SZ5GD&location.latitude=${laa}&location.longitude=${loo}`;
+  // console.log(url);
+  // let url = 'https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyCm7431yy5TSXfJZqPpGrO4GURTLObIMj8';
+  // fetch(url).then((res) => {
+  //   return res.json();
+  // }).then((text) => {
+  //   console.log(text.results[0].geometry.location.lat);
+  //   // let nametext = text.events[x]["name"].text;
+  //
+  // }).catch((err) => {
+  //   console.log(err);
+  // });
+res.render('index', { title: "test" });
+
 });
 
 module.exports = router;

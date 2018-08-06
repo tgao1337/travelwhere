@@ -9,6 +9,8 @@
 
 
 <!-- <p class="center">Click the button to get your coordinates.</p> -->
+<form action="/" method="post">
+
 <div class="frow">
   <div>
 
@@ -18,24 +20,14 @@
         <div class="mdl-textfield mdl-js-textfield opfm tts">
           <div id="latt">
 
-            <input class="mdl-textfield__input boinput" name="llat" type="text" id="lllat" pattern="-?[0-9]*(\.[0-9]+)?" maxlength="20" placeholder="ex: 37.773550"/>
+            <input class="mdl-textfield__input boinput" name="loc" type="text" id="lllat" placeholder="type loc here"/>
           </div>
           <span class="mdl-textfield__error">Input is not a proper coordinate!</span>
-          <div class="mdl-tooltip mdl-tooltip--large" for="lllat">Latitude</div>
+          <div class="mdl-tooltip mdl-tooltip--large" for="lllat">location</div>
 
         </div>
       </div>
-      <div>
 
-        <div class="mdl-textfield mdl-js-textfield opfm tts">
-          <div id="lonn">
-
-            <input class="mdl-textfield__input boinput" name="llong" type="text" id="lllong" pattern="-?[0-9]*(\.[0-9]+)?" maxlength="20" placeholder="ex: -122.417730"/>
-          </div>
-          <span class="mdl-textfield__error">Input is not a proper coordinate!</span>
-          <div class="mdl-tooltip mdl-tooltip--large" for="lllong">Longitude</div>
-        </div>
-      </div>
       <!-- <input type="text" name="llat" id="lllat" placeholder="Latitude">
       <input type="text" name="llong" id="lllong" placeholder="Longitude"> -->
     </div>
@@ -54,28 +46,17 @@
     <!-- <button onclick="getLocation()"><i class="material-icons">gps_not_fixed</i></button> -->
     <div>
       <div id="finda" class="opfm">
-        <input type="button" onclick="getapis()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" value="Find" /input>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">Find</button>
 
       </div>
     </div>
   </div>
 </div>
 <!-- <div id="tttt">test</div> -->
-<div id="eventname" class="center"></div>
-<div class="ro center">
-  <div>
-    <div id="emg" class="center"></div>
 
-  </div>
-  <div>
-    <div id="enformation" class="center ep"></div>
 
-    <div id="starttimed"></div>
-    <div id="endtimed"></div>
-    <div id="isfreed"></div>
-  </div>
 
-</div>
+</form>
 
 
 
@@ -88,118 +69,6 @@
 
 <script>
 
-var inputBox = document.getElementById("lllat");
-var inputBoxlo = document.getElementById("lllong");
-
-var invalidChars = [
-  "+",
-  "e",
-  "A",
-  "B",
-  "C",
-  "D",
-  "E",
-  "F",
-  "G",
-  "H",
-  "I",
-  "J",
-  "K",
-  "L",
-  "M",
-  "N",
-  "O",
-  "P",
-  "Q",
-  "R",
-  "S",
-  "T",
-  "U",
-  "V",
-  "W",
-  "X",
-  "Y",
-  "Z",
-  "a",
-  "b",
-  "c",
-  "d",
-  "f",
-  "g",
-  "h",
-  "i",
-  "j",
-  "k",
-  "l",
-  "m",
-  "n",
-  "o",
-  "p",
-  "q",
-  "r",
-  "s",
-  "t",
-  "u",
-  "v",
-  "w",
-  "x",
-  "y",
-  "z",
-  "~",
-  "`",
-  "!",
-  "@",
-  "#",
-  "$",
-  "%",
-  "^",
-  "&",
-  "*",
-  "(",
-  ")",
-  "_",
-  "+",
-  "=",
-  "{",
-  "}",
-  "[",
-  "]",
-  "\\",
-  "|",
-  "'",
-  "\"",
-  ";",
-  ":",
-  "<",
-  ">",
-  ",",
-  "?",
-  "/"
-];
-
-// inputBox.addEventListener("input", function() {
-//   this.value = this.value.replace("e", "");
-// });
-
-inputBox.addEventListener("keydown", function(e) {
-  if (invalidChars.includes(e.key)) {
-    e.preventDefault();
-  }
-});
-
-inputBoxlo.addEventListener("keydown", function(e) {
-  if (invalidChars.includes(e.key)) {
-    e.preventDefault();
-  }
-});
-
-var x = document.getElementById("demo");
-
-// localStorage.setItem('testlate', "40.768757");
-// localStorage.setItem('testlone', "-73.971652");
-
-localStorage.setItem('testlate', "37.773550");
-localStorage.setItem('testlone', "-122.417730");
 
 function getLocation() {
   if (navigator.geolocation) {
