@@ -20,10 +20,9 @@
         <div class="mdl-textfield mdl-js-textfield opfm tts">
           <div id="latt">
 
-            <input class="mdl-textfield__input boinput" name="loc" type="text" id="lllat" placeholder="type loc here"/>
+            <input class="mdl-textfield__input boinput" name="loc" type="text" id="lllat" placeholder="Type a location"/>
           </div>
-          <span class="mdl-textfield__error">Input is not a proper coordinate!</span>
-          <div class="mdl-tooltip mdl-tooltip--large" for="lllat">location</div>
+          <div class="mdl-tooltip mdl-tooltip--large" for="lllat">Location</div>
 
         </div>
       </div>
@@ -34,16 +33,15 @@
   </div>
   <div class="rcr">
 
-    <div>
+    <!-- <div>
 
       <div id="gps">
-      <button id="gbutt" class="opfm mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-js-ripple-effect" onclick="getLocation()">
+      <button id="gbutt" type="button" class="opfm mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-js-ripple-effect" onclick="getLocation()">
           <i onclick="getLocation()" class="material-icons">gps_not_fixed</i>
           <div class="mdl-tooltip" id="tootip" for="gbutt">Click here to automatically input your location</div>
       </button>
     </div>
-    </div>
-    <!-- <button onclick="getLocation()"><i class="material-icons">gps_not_fixed</i></button> -->
+    </div> -->
     <div>
       <div id="finda" class="opfm">
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">Find</button>
@@ -79,8 +77,8 @@ function getLocation() {
 }
 // console.log("test");
 function showPosition(position) {
-  localStorage.setItem('testlate', position.coords.latitude);
-  localStorage.setItem('testlone', position.coords.longitude);
+  // localStorage.setItem('testlate', position.coords.latitude);
+  // localStorage.setItem('testlone', position.coords.longitude);
   // // console.log(localStorage.testlat);
   // getapis();
   // document.getElementById("tttt").innerHTML = '<p>'+localStorage.testlate+'</p>';
@@ -89,8 +87,8 @@ function showPosition(position) {
 
   // x.innerHTML = "Latitude: " + position.coords.latitude +
   // "<br>Longitude: " + position.coords.longitude;
-  document.getElementById("latt").innerHTML = '<input class="boinput mdl-textfield__input" name="llat" type="text" id="lllat" pattern="-?[0-9]*(\.[0-9]+)?" maxlength="20" placeholder="ex: 37.773550" value="'+position.coords.latitude+'">';
-  document.getElementById("lonn").innerHTML = '<input class="boinput mdl-textfield__input" name="llong" type="text" id="lllong" pattern="-?[0-9]*(\.[0-9]+)?" maxlength="20" placeholder="ex: -122.417730" value="'+position.coords.longitude+'">';
+  document.getElementById("latt").innerHTML = '<input class="boinput mdl-textfield__input" type="text" name="llat"  value="'+position.coords.latitude+', '+position.coords.longitude+'">';
+  // document.getElementById("lonn").innerHTML = '<input class="boinput mdl-textfield__input" name="llong" type="text" id="lllong" pattern="-?[0-9]*(\.[0-9]+)?" maxlength="20" placeholder="ex: -122.417730" value="'+position.coords.longitude+'">';
   // document.getElementById("lllat").setAttribute("value", position.coords.latitude);
   // document.getElementById("lllong").setAttribute("value", position.coords.longitude);
   document.getElementById("gps").innerHTML = '<button id="gbutt" class="opfm mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-js-ripple-effect" onclick="getLocation()"><i onclick="getLocation()" class="material-icons">gps_fixed</i></button>';

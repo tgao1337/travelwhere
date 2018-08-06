@@ -24,6 +24,8 @@ router.post('/', function(req, res, next) {
   .asPromise()
   .then((response) => {
     console.log(response.json.results[0]["geometry"].location.lat);
+    console.log(response.json.results[0]["geometry"].location.lng);
+
   })
   .catch((err) => {
     console.log(err);
