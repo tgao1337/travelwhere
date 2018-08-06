@@ -35,7 +35,7 @@ router.post('/', function(req, res, next) {
     var latte = body.results[0]["geometry"].location.lat;
     // if (matchString == "match") match = true;
 
-    // console.log(latte);
+    console.log(latte);
     // console.log(match);
   }).catch(function(err) {
     console.error(err);
