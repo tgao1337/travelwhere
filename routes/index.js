@@ -18,23 +18,24 @@ router.post('/', function(req, res, next) {
   // console.log(req.body);
   let url = 'https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyCm7431yy5TSXfJZqPpGrO4GURTLObIMj8';
   let latc = req.body.loc;
+  // console.log(latc);
   var options = { method: 'POST',
-    url: 'http://maps.googleapis.com/maps/api/geocode/',
+    url: 'http://maps.googleapis.com/maps/api/geocode/json',
     body:
     {
-      address: latc
+      "address": latc
     },
     headers: {
-        "key":"AIzaSyCm7431yy5TSXfJZqPpGrO4GURTLObIMj8"
+      "key":"AIzaSyCm7431yy5TSXfJZqPpGrO4GURTLObIMj8"
     },
     json: true };
 
   rp(options).then(function(body) {
     // console.log(body);
-    var latte = body.results[0].geometry.location.lat;
+    var latte = body.results[0]["geometry"].location.lat;
     // if (matchString == "match") match = true;
 
-    console.log(latte);
+    // console.log(latte);
     // console.log(match);
   }).catch(function(err) {
     console.error(err);
