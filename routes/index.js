@@ -25,7 +25,7 @@ router.post('/', function(req, res, next) {
   .then((response) => {
     console.log(response.json.results[0]["geometry"].location.lat);
     console.log(response.json.results[0]["geometry"].location.lng);
-
+    // send to the eventbriteapi!
   })
   .catch((err) => {
     console.log(err);
