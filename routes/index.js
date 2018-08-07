@@ -23,13 +23,54 @@ router.post('/', function(req, res, next) {
   googleMapsClient.geocode({address: latc})
   .asPromise()
   .then((response) => {
-    console.log(response.json.results[0]["geometry"].location.lat);
-    console.log(response.json.results[0]["geometry"].location.lng);
+    // console.log(response.json.results[0]["geometry"].location.lat);
+    // console.log(response.json.results[0]["geometry"].location.lng);
+     let lat = response.json.results[0]["geometry"].location.lat;
+     let lng = response.json.results[0]["geometry"].location.lng;
+    // let latlng [];
+    var location = {lat: lat, lng: lng};
+
+    // send to the eventbriteapi!
+    return location;
+  })
+  .then((locationresponse) => {
+    // console.log(locationresponse.lat);
+    // console.log(locationresponse.lng);
+
+    let laa = locationresponse.lat;
+    let loo = locationresponse.lng;
+    let url = `https://www.eventbriteapi.com/v3/events/search/?token=3I5EFIZIDVYYTR4SZ5GD&location.latitude=${laa}&location.longitude=${loo}`;
+    // console.log(url);
+    fetch(url).then((res) => {
+      return res.json();
+      // console.log("retuened json");
+    }).then((text) => {
+      let nametext = text.events[x]["name"].text;
+      let distext = text.events[x]["description"].text;
+      let erl = text.events[x]["url"];
+      let picurl = text.events[x]["logo"].url;
+      let starttime = text.events[x]["start"].local;
+      let endtime = text.events[x]["end"].local;
+      let isfree = text.events[x]["is_free"];
+      let freestring = 'This is not a free event.';
+      if(isfree) {
+        freestring = 'This event is free.';
+      }
+      else {
+        freestring = 'This is not a free event.';
+      }
+
+      var event = {name: nametext, description: distext, eventurl:erl, picurl:picurl, start: starttime, end: endtime, free: freestring};
+      res.render('result', { event: event , title: 'GoWhere' });
+    }).catch((err) => {
+      console.log(err);
+    });
     // send to the eventbriteapi!
   })
   .catch((err) => {
     console.log(err);
   });
+
   // let url = 'https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyCm7431yy5TSXfJZqPpGrO4GURTLObIMj8';
   // console.log(latc);
   // var options = { method: 'POST',
@@ -67,8 +108,10 @@ router.post('/', function(req, res, next) {
   // }).catch((err) => {
   //   console.log(err);
   // });
-res.render('index', { title: "test" });
+
 
 });
-
+router.get('/result', function(req, res, next) {
+  res.render('result', { event: event , title: 'GoWhere' });
+});
 module.exports = router;
