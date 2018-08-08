@@ -36,6 +36,18 @@ body {
   justify-content: center;
   align-items: center;
 }
+.ec {
+  display: flex;
+  flex-direction:  column;
+  justify-content: center;
+  margin-left: 5vw;
+  margin-right: 5vw;
+
+}
+.ss {
+  background-color: rgba(240, 240, 240, 0.6);
+  padding: 2vw;
+}
 
 .flec {
   padding-top: 20vh;
@@ -121,11 +133,14 @@ padding: -5px;
 }
 
 #floater {
-  width: 90vw;
-  /* background-color: green; */
+  width: 84.5vw;
+  /* background-color: rgba(240, 240, 240, 0.6); */
+  /* background-color: green;
+  opacity: .5; */
+}
+.no {
 
 }
-
 #floatpic {
   float: left;
 

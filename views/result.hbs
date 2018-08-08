@@ -1,4 +1,32 @@
+<style>
+@media only screen and (min-width: 769px)
+{.frow { display: flex; flex-direction: row;justify-content: center; align-items: center; } .tts { margin-right: 1em; } .flec { padding-top: 5vh; } .rcr { display: flex; flex-direction: row; justify-content: center;  align-items: center;margin-left: .75em; } }
+</style>
+<div id="ti">
 
-<p>{{event.name}}</p>
-<title>{{title}}</title>
-<p>taehuiaarhtest</p>
+  <h3 class="center"><a href="/" class="lblt">{{title}}</a></h3>
+</div>
+<div class="center ec">
+<div>
+
+<h1 class="blt center"><a href="{{event.eventurl}}" class="blt" target="_blank">{{event.name}}</a></h1>
+</div>
+<div class="ss">
+
+<div>
+
+<!-- document.getElementById("finda").innerHTML = '<input type="button" onclick="getapis()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" value="Find Another" /input>' -->
+<div id="floater" class="center">
+  <img class="center lefm no" id="floatpic" src="{{event.picurl}}" alt="{{event.name}}"><p class="ep no">{{event.description}}</p>
+  <!-- // document.getElementById("emg").innerHTML = '<img class="center lefm" src="'+picurl+'" alt="'+nametext+'">'; -->
+</div>
+</div>
+<div>
+
+<p>{{event.start}}</p>
+<p>{{event.end}}</p>
+<p>{{event.free}}</p>
+
+</div>
+</div>
+</div>
