@@ -4,10 +4,23 @@ const request = require('request');
 var rp = require('request-promise');
 
 
+
 const googleMapsClient = require('@google/maps').createClient({
   key: 'AIzaSyCm7431yy5TSXfJZqPpGrO4GURTLObIMj8',
   Promise: Promise
 });
+
+var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+
+var toneAnalyzer = new ToneAnalyzerV3({
+    version: '2017-09-21',
+    username: '1303e77d-30f2-4412-b7ea-e6988507e082',
+    password: 'E1lMbWHPLsg8',
+
+    use_vcap_services: false,
+    url: 'https://gateway.watsonplatform.net/tone-analyzer/api'
+  });
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'GoWhere' });
@@ -38,14 +51,14 @@ router.post('/', function(req, res, next) {
           { "latitude": laa,
             "longitude":  loo
           }
-          
+
           },
       headers: {
           "Authorization":"Bearer 3I5EFIZIDVYYTR4SZ5GD"
       },
       json: true };
     rp(options).then(function(body) {
-      let x = Math.floor(Math.random() * 50);
+      let x = Math.floor(Math.random() * body.events.length);
       let nametext = body.events[x]["name"].text;
       let distext = body.events[x]["description"].text;
       let erl = body.events[x]["url"];
@@ -60,6 +73,19 @@ router.post('/', function(req, res, next) {
       else {
         freestring = 'This is not a free event.';
       }
+
+      var toneParams = {
+        'tone_input': { 'text': distext },
+        'content_type': 'application/json'
+      };
+
+      toneAnalyzer.tone(toneParams, function (error, toneAnalysis) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log(JSON.stringify(toneAnalysis, null, 2));
+        }
+      });
 
       var event = {name: nametext, description: distext, eventurl:erl, picurl:picurl, start: starttime, end: endtime, free: freestring};
 
