@@ -76,6 +76,8 @@ router.post('/', function(req, res, next) {
 
       var toneParams = {
         'tone_input': { 'text': distext },
+        // 'tone_input': { 'text': "nothing will happen." },
+
         'content_type': 'application/json'
       };
 
@@ -83,7 +85,15 @@ router.post('/', function(req, res, next) {
         if (error) {
           console.log(error);
         } else {
-          console.log(JSON.stringify(toneAnalysis, null, 2));
+          // console.log(JSON.stringify(toneAnalysis, null, 2));
+          var ton = JSON.stringify(toneAnalysis, null, 2);
+          console.log(ton["document_tone"]);
+          // if(ton["document_tone"]!== "undefined"){console.log(ton["document_tone"]["tones"].length);}
+          // else{
+          //
+          //   console.log("nothing");
+          // }
+
         }
       });
 
