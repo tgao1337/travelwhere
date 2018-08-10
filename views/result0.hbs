@@ -24,8 +24,9 @@
 <p>{{event.start}}</p>
 <p>{{event.end}}</p>
 <p>{{event.free}}</p>
-
-
+{{#each tone as |tone|}}
+<p>{{tone.tone_name}}</p>
+{{/each}}
 </div>
 </div>
 </div>

@@ -76,30 +76,48 @@ router.post('/', function(req, res, next) {
 
       var toneParams = {
         'tone_input': { 'text': distext },
-        // 'tone_input': { 'text': "nothing will happen." },
+        // 'tone_input': { 'text': "a string." },
 
         'content_type': 'application/json'
       };
+
+      var event = {name: nametext, description: distext, eventurl:erl, picurl:picurl, start: starttime, end: endtime, free: freestring};
+
 
       toneAnalyzer.tone(toneParams, function (error, toneAnalysis) {
         if (error) {
           console.log(error);
         } else {
           // console.log(JSON.stringify(toneAnalysis, null, 2));
-          var ton = JSON.stringify(toneAnalysis, null, 2);
-          console.log(ton["document_tone"]);
+          // var ton = JSON.stringify(toneAnalysis, null, 2);
+          // var toe = JSON.parse(toneAnalysis);
+          var ta = toneAnalysis;
+          // var tonelist;
+          // console.log(ta.document_tone);
           // if(ton["document_tone"]!== "undefined"){console.log(ton["document_tone"]["tones"].length);}
-          // else{
-          //
+          if (!Array.isArray(ta.document_tone.tones) || !ta.document_tone.tones.length) {
+          //   asd
+            console.log("nothings is here");
+            // return("nothing return");
+            res.render('result', { event: event , title: 'GoWhere'  });
+
+          }
+          else{
+            console.log("something is here");
+            var tonelisttwo = ta.document_tone.tones;
           //   console.log("nothing");
-          // }
+            // return("something return");
+            res.render('result0', { event: event , tone: tonelisttwo });
+
+          }
 
         }
       });
+      // console.log(tonelist);
 
-      var event = {name: nametext, description: distext, eventurl:erl, picurl:picurl, start: starttime, end: endtime, free: freestring};
+      // var event = {name: nametext, description: distext, eventurl:erl, picurl:picurl, start: starttime, end: endtime, free: freestring};
 
-      res.render('result', { event: event , title: 'GoWhere' });
+      // res.render('result', { event: event , title: 'GoWhere' });
 
     }).catch(function(err) {
       console.error(err);
