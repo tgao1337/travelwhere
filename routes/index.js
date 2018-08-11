@@ -21,10 +21,10 @@ var toneAnalyzer = new ToneAnalyzerV3({
     url: 'https://gateway.watsonplatform.net/tone-analyzer/api'
   });
 
-var http = require("http");
-setInterval(function() {
-  http.get("https://blooming-beach-60917.herokuapp.com");
-}, 150000);
+// var http = require("http");
+// setInterval(function() {
+//   http.get("https://blooming-beach-60917.herokuapp.com");
+// }, 150000);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
