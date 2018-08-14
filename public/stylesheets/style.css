@@ -195,3 +195,14 @@ padding: -5px;
   background-color: #d966ff;
   color: white;
 }
+
+.footer {
+  /* background-color: #dadced; */
+  padding: 2.6vh;
+  margin-top: 4vh;
+
+}
+
+.text-center {
+  text-align: center;
+}
