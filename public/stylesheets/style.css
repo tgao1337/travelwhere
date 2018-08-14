@@ -165,8 +165,8 @@ padding: -5px;
 }
 
 .uppermargin {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 0px;
+  margin-bottom: 15px;
 }
 
 .tbutton {
@@ -187,7 +187,8 @@ padding: -5px;
 .tbutton:hover {
   background-color: transparent;
   cursor: pointer;
-  color: #cc33ff;
+  color: black;
+  border-color: black;
 }
 
 .tbutton:active {

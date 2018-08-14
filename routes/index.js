@@ -53,31 +53,32 @@ router.post('/', function(req, res, next) {
       body:
        {
          "location":
-          { "latitude": laa,
+          {
+            "latitude": laa,
             "longitude":  loo
           }
 
           },
       headers: {
-          "Authorization":"Bearer 3I5EFIZIDVYYTR4SZ5GD"
+        "Authorization":"Bearer 3I5EFIZIDVYYTR4SZ5GD"
       },
       json: true };
-    rp(options).then(function(body) {
-      let x = Math.floor(Math.random() * body.events.length);
-      let nametext = body.events[x]["name"].text;
-      let distext = body.events[x]["description"].text;
-      let erl = body.events[x]["url"];
-      let picurl = body.events[x]["logo"].url;
-      let starttime = body.events[x]["start"].local;
-      let endtime = body.events[x]["end"].local;
-      let isfree = body.events[x]["is_free"];
-      let freestring = 'This is not a free event.';
-      if(isfree) {
-        freestring = 'This event is free.';
-      }
-      else {
-        freestring = 'This is not a free event.';
-      }
+      rp(options).then(function(body) {
+        let x = Math.floor(Math.random() * body.events.length);
+        let nametext = body.events[x]["name"].text;
+        let distext = body.events[x]["description"].text;
+        let erl = body.events[x]["url"];
+        let picurl = body.events[x]["logo"].url;
+        let starttime = body.events[x]["start"].local;
+        let endtime = body.events[x]["end"].local;
+        let isfree = body.events[x]["is_free"];
+        let freestring = 'This is not a free event.';
+        if(isfree) {
+          freestring = 'This event is free.';
+        }
+        else {
+          freestring = 'This is not a free event.';
+        }
 
       var toneParams = {
         'tone_input': { 'text': distext },
@@ -93,6 +94,7 @@ router.post('/', function(req, res, next) {
         if (error) {
           console.log(error);
         } else {
+          
           // console.log(JSON.stringify(toneAnalysis, null, 2));
           // var ton = JSON.stringify(toneAnalysis, null, 2);
           // var toe = JSON.parse(toneAnalysis);
@@ -102,13 +104,13 @@ router.post('/', function(req, res, next) {
           // if(ton["document_tone"]!== "undefined"){console.log(ton["document_tone"]["tones"].length);}
           if (!Array.isArray(ta.document_tone.tones) || !ta.document_tone.tones.length) {
           //   asd
-            console.log("nothings is here");
+            // console.log("nothings is here");
             // return("nothing return");
             res.render('result', { event: event , title: 'GoWhere'  });
 
           }
           else{
-            console.log("something is here");
+            // console.log("something is here");
             var tonelisttwo = ta.document_tone.tones;
           //   console.log("nothing");
             // return("something return");
