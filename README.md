@@ -57,4 +57,4 @@ Other maps?
 ## Future changes
 IBM Watson to integrate personalized recommendations
   -analyze user twitter
-  -analyse event description
+  -analyse event description -- done
